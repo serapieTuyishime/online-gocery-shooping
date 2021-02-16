@@ -12,19 +12,19 @@ $query = 'SELECT * FROM tblsupplier
               supplier_id ='.$_GET['id'];
             $result = mysqli_query($db, $query) or die(mysqli_error($db));
               while($row = mysqli_fetch_array($result))
-              {   
+              {
                $zz = $row['supplier_id'];
                $i = $row['supplier_name'];
                $a = $row['contact'];
                $b = $row['email'];
                $d = $row['address'];
-               
-      
-             
+
+
+
               }
-              
+
               $id = $_GET['id'];
-         
+
 ?>
 <style type="text/css">
   .error-msg{
@@ -48,27 +48,27 @@ $query = 'SELECT * FROM tblsupplier
                echo '<p class="error-msg text-danger"> Email is required</p>';
             }elseif ($_GET["required"]=="address") {
                echo '<p class="error-msg text-danger"> Address is required</p>';
-            } 
-            }      ?>           
+            }
+            }      ?>
                             <div class="form-group">
                                 <input type="hidden" name="id" value="<?php echo $zz; ?>" />
                             </div>
                             <div class="form-group">
-                              <input class="form-control" placeholder="Supplier Name" name="supplier" value="<?php echo $i; ?>">
+                              <input class="form-control" placeholder="Supplier Name" name="supplier" value="<?php echo $i; ?>" onkeypress="return alphabets(event);">
                             </div>
                             <div class="form-group">
-                              <input class="form-control" placeholder="Contact" name="contact" value="<?php echo $a; ?>">
-                            </div> 
+                              <input class="form-control" placeholder="Contact" name="contact" value="<?php echo $a; ?>" onkeypress="return numbers(event);">
+                            </div>
                             <div class="form-group">
-                              <input class="form-control" placeholder="Email" name="email" value="<?php echo $b; ?>">
-                            </div>  
+                              <input class="form-control" type="email" placeholder="Email" name="email" value="<?php echo $b; ?>">
+                            </div>
                             <div class="form-group">
                               <input class="form-control" placeholder="Address" name="address" value="<?php echo $d; ?>">
-                            </div> 
+                            </div>
                             <button type="submit" name="submit" class="btn btn-default">Update</button>
-                      </form>  
+                      </form>
                     </div>
                 </div>
-                
+
 <!--footer area-->
 <?php include 'theme/footer.php'; }?>

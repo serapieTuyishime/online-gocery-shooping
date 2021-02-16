@@ -14,12 +14,12 @@ $result3 = mysqli_query($db,$query3);
 
 $query2 = 'SELECT current_date FROM tblusers';
 $result2 = mysqli_query($db, $query2) or die(mysqli_error($db));
-while($row2 = mysqli_fetch_array($result2)){   
+while($row2 = mysqli_fetch_array($result2)){
 $date = $row2['current_date'];
 }
 $sql = 'SELECT `start` + `end` as autonum FROM tblautonumber where `desc` = "PROD"';
 $res = mysqli_query($db, $sql) or die(mysqli_error($db));
-while($r = mysqli_fetch_array($res)){   
+while($r = mysqli_fetch_array($res)){
 $autonum = $r['autonum'];
 }
 ?>
@@ -54,6 +54,7 @@ $autonum = $r['autonum'];
             }
             }      ?>
                             <div class="form-group">
+                                <label> ID:</label>
                               <input class="form-control" readonly type="number" value="<?php echo $autonum; ?>" name="code">
                             </div>
                             <div class="form-group">
@@ -89,17 +90,17 @@ $autonum = $r['autonum'];
                               <option value="<?php echo $row[0]; ?>"><?php echo $row[1]; ?></option>
                               <?php endwhile; ?>
                               </select>
-                            </div> 
+                            </div>
                             <div class="form-group">
                               <input type="file" name="productImage">
-                            </div> 
-                            
+                            </div>
+
                             <button type="submit" name="submit" class="btn btn-info">Save Record</button>
                             <button type="reset" class="btn btn-danger">Clear Entry</button>
-                            
 
 
-                      </form>  
+
+                      </form>
                        </div>
                 </div>
               </div>

@@ -28,7 +28,7 @@ function alphabets(e)
 		{
 			return true;
 		}
-		else 
+		else
 		{
 			return false;
 		}
@@ -37,7 +37,7 @@ function alphabets(e)
 		alert(err.Description);
 	}
 }
- 
+
 function alaphanumericWsymbols(e)
 {
 	try

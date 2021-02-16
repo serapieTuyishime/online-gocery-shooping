@@ -6,7 +6,7 @@ if(!isset($_SESSION["userid"])){
 include('../includes/connection.php');
 include 'theme/header.php';
 include 'theme/sidebar.php';
-?>  
+?>
 <style type="text/css">
   .error-msg{
   text-align: center;
@@ -31,26 +31,26 @@ include 'theme/sidebar.php';
                echo '<p class="error-msg text-danger"> Email is required</p>';
             }elseif ($_GET["required"]=="address") {
                echo '<p class="error-msg text-danger"> Address is required</p>';
-            } 
+            }
             }      ?>
                             <div class="form-group">
-                              <input class="form-control" placeholder="Supplier Name" name="supplier" autofocus="autofocus">
+                              <input class="form-control" placeholder="Supplier Name" name="supplier" autofocus="autofocus" onkeypress="return alphabets(event);">
                             </div>
                             <div class="form-group">
-                              <input  type="text" maxlength="10" class="form-control" placeholder="Contact" name="contact">
-                            </div> 
+                              <input  type="text" maxlength="10" class="form-control" placeholder="Contact" name="contact" onkeypress="return numbers(event);">
+                            </div>
                             <div class="form-group">
-                              <input class="form-control" placeholder="Email" name="email">
-                            </div> 
+                              <input class="form-control" type="email" placeholder="Email" name="email">
+                            </div>
                             <div class="form-group">
                               <input class="form-control" placeholder="Address" name="address">
-                            </div> 
-                             
+                            </div>
+
                             <button type="submit" name="submit" class="btn btn-info">Save Record</button>
                             <button type="reset" class="btn btn-danger">Clear Entry</button>
 
 
-                      </form>  
+                      </form>
                        </div>
                 </div>
               </div>

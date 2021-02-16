@@ -11,7 +11,7 @@ $query = 'SELECT *,category,supplier_name FROM `tblproducts`a inner join `tblcat
               WHERE `product_code` = '.$_GET['id'].' ';
             $result = mysqli_query($db, $query) or die(mysqli_error($db));
               while($row = mysqli_fetch_array($result))
-              {   
+              {
                $id = $row['product_code'];
                $name = $row['product_name'];
                $quantity = $row['quantity'];
@@ -21,12 +21,12 @@ $query = 'SELECT *,category,supplier_name FROM `tblproducts`a inner join `tblcat
                $c_id = $row['category_id'];
                $supplier = $row['supplier_name'];
                $s_id = $row['supplier_id'];
-              }              
+              }
               $id = $_GET['id'];
 $query1 = "SELECT * FROM tblcategory";
 $result1 = mysqli_query($db,$query1);
 $query2 = "SELECT * FROM tblsupplier";
-$result2 = mysqli_query($db,$query2);              
+$result2 = mysqli_query($db,$query2);
 ?>
 <style type="text/css">
   .error-msg{
@@ -51,24 +51,24 @@ $result2 = mysqli_query($db,$query2);
                echo '<p class="error-msg text-danger">Category is required</p>';
             }elseif ($_GET["required"]=="supplier") {
                echo '<p class="error-msg text-danger">Supplier is required</p>';
-            } 
-            }      ?>                 
+            }
+            }      ?>
                             <input type="hidden" name="id" value="<?php echo $id; ?>" />
                             <div class="form-group">
                               <span>Product Name</span>
-                              <input class="form-control" placeholder="Product Name" name="product" value="<?php echo $name; ?>">
+                              <input class="form-control" placeholder="Product Name" name="product" value="<?php echo $name; ?>" onkeypress="return alphabets(event);">
                             </div>
                             <!-- <div class="form-group">
                               <span>Add Quantity</span>
                               <input class="form-control" type="number" placeholder="Quantity" name="quantity" value="0">
-                            </div> --> 
+                            </div> -->
                             <div class="form-group">
                               <span>Price</span>
-                              <input class="form-control" type="number" placeholder="Price" id="price" name="price" value="<?php echo $price; ?>">
+                              <input class="form-control" type="text" placeholder="Price" id="price" name="price" value="<?php echo $price; ?>" onkeypress="return floats(event);">
                             </div>
                             <div class="form-group">
-                              <span>Markup</span>
-                              <input class="form-control" type="number" placeholder="Markup" id="price" name="markup" value="<?php echo $markup; ?>">
+                              <span>Profit</span>
+                              <input class="form-control" type="text" placeholder="Markup" id="price" name="markup" value="<?php echo $markup; ?>" onkeypress="return floats(event);">
                             </div>
                             <div class="form-group">
                             <span>Category</span>
@@ -89,7 +89,7 @@ $result2 = mysqli_query($db,$query2);
                             </select>
                             </div>
                             <button type="submit" name="submit" class="btn btn-info">Update</button>
-                      </form>  
+                      </form>
                     </div>
                 </div>
                 </div>
