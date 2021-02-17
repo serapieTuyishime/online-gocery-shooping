@@ -52,6 +52,9 @@ $autonum = $r['autonum'];
             }elseif ($_GET["required"]=="producttaken") {
                echo '<p class="error-msg text-danger">Product name is already taken.</p>';
             }
+            elseif ($_GET["required"]=="image") {
+               echo '<p class="error-msg text-danger">Incorrect image format</p>';
+            }
             }      ?>
                             <div class="form-group">
                                 <label> ID:</label>

@@ -48,10 +48,17 @@
 				if (in_array($image_file_type, $extensionList))
 				{
 					move_uploaded_file($_FILES['productImage']['tmp_name'], $targetDirectory.$image);
+				
+					mysqli_query($db,$query)or die (mysqli_error($db));
+					$sql = "UPDATE `tblautonumber` SET `end`=`end`+`increment` WHERE `desc` = 'PROD'";
+					mysqli_query($db,$sql)or die (mysqli_error($db));
 				}
-				mysqli_query($db,$query)or die (mysqli_error($db));
-				$sql = "UPDATE `tblautonumber` SET `end`=`end`+`increment` WHERE `desc` = 'PROD'";
-				mysqli_query($db,$sql)or die (mysqli_error($db));
+				else
+				{
+					header("Location: productadd.php?required=image");
+              		die();
+
+				}
 				?>
 				<script type="text/javascript">
 				alert("Successfully added.");
@@ -83,7 +90,7 @@
 
 					?>
 				<script type="text/javascript">
-				alert("Update successfully.");
+				alert("Update successfuly.");
 				window.location = "product.php";
 				</script>
 				<?php
