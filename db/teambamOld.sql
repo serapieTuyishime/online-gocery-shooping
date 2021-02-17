@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2021 at 06:31 AM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.2.32
+-- Generation Time: Oct 06, 2020 at 03:34 PM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.0.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -36,27 +37,6 @@ CREATE TABLE `history` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `messages`
---
-
-CREATE TABLE `messages` (
-  `id` int(11) NOT NULL,
-  `name` varchar(80) NOT NULL,
-  `email` varchar(80) NOT NULL,
-  `subject` varchar(80) NOT NULL,
-  `message` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `messages`
---
-
-INSERT INTO `messages` (`id`, `name`, `email`, `subject`, `message`) VALUES
-(1, 'nzxbc', 'mauri@gmail.com', 'hfkf', 'xzxzx');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tblautonumber`
 --
 
@@ -73,7 +53,7 @@ CREATE TABLE `tblautonumber` (
 --
 
 INSERT INTO `tblautonumber` (`id`, `start`, `end`, `increment`, `desc`) VALUES
-(1, 1000, 27, 1, 'PROD');
+(1, 1000, 26, 1, 'PROD');
 
 -- --------------------------------------------------------
 
@@ -110,7 +90,7 @@ CREATE TABLE `tblcustomer` (
   `C_PNUMBER` varchar(50) NOT NULL,
   `C_GENDER` varchar(50) NOT NULL,
   `C_EMAILADD` varchar(50) NOT NULL,
-  `ZIPCODE` varchar(50) DEFAULT NULL,
+  `ZIPCODE` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -121,8 +101,7 @@ CREATE TABLE `tblcustomer` (
 
 INSERT INTO `tblcustomer` (`C_ID`, `C_FNAME`, `C_LNAME`, `C_AGE`, `C_ADDRESS`, `C_PNUMBER`, `C_GENDER`, `C_EMAILADD`, `ZIPCODE`, `username`, `password`) VALUES
 (4, 'mutozo', 'jacq', 30, 'karwasa', '07865543322', 'Female', 'mutozo@gmail.com', '76', 'mutozo', '$2y$10$oLzZ/yNX4hAGMDKZCQs52eqynPbd/d9TzY3fQJSlwPDzmcHtsyfza'),
-(5, 'dusabe', 'mary', 21, 'musanze', '0723455566', 'Female', 'dusabe@gmail.com', 'musanze32', 'mary', '$2y$10$tE.WYUUgFKfLwAsGDCFNhOw9NdLb0P05mL5AQoTdnDZgPc5JLrSEO'),
-(6, 'icyumutima ushaka', 'amata', 33, 'dfdf', '3434', 'Male', 'err@der.fd', NULL, '', '');
+(5, 'dusabe', 'mary', 21, 'musanze', '0723455566', 'Female', 'dusabe@gmail.com', 'musanze32', 'mary', '$2y$10$tE.WYUUgFKfLwAsGDCFNhOw9NdLb0P05mL5AQoTdnDZgPc5JLrSEO');
 
 -- --------------------------------------------------------
 
@@ -131,23 +110,12 @@ INSERT INTO `tblcustomer` (`C_ID`, `C_FNAME`, `C_LNAME`, `C_AGE`, `C_ADDRESS`, `
 --
 
 CREATE TABLE `tbldelivery` (
-  `TRANSAC_CODE` int(50) NOT NULL,
   `D_ID` int(50) NOT NULL,
   `C_ID` int(50) NOT NULL,
-  `EMP_ID` int(50) DEFAULT NULL,
+  `EMP_ID` int(50) NOT NULL,
   `C_ADDRESS` text NOT NULL,
-  `C_PNUMBER` int(50) NOT NULL,
-  `D_DATE` date NOT NULL
+  `C_PNUMBER` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbldelivery`
---
-
-INSERT INTO `tbldelivery` (`TRANSAC_CODE`, `D_ID`, `C_ID`, `EMP_ID`, `C_ADDRESS`, `C_PNUMBER`, `D_DATE`) VALUES
-(0, 1, 5, NULL, '                                \r\n                              ', 723455566, '2021-02-19'),
-(1613054848, 2, 5, NULL, '                                \r\n                              ', 723455566, '2021-02-12'),
-(1613055173, 3, 5, NULL, '                                \r\n                              ', 723455566, '2021-02-13');
 
 -- --------------------------------------------------------
 
@@ -198,7 +166,7 @@ CREATE TABLE `tblinventory` (
 CREATE TABLE `tblproducts` (
   `product_id` int(11) NOT NULL,
   `product_name` varchar(50) NOT NULL,
-  `quantity` int(11) NOT NULL DEFAULT 1,
+  `quantity` int(11) NOT NULL DEFAULT '1',
   `price` int(20) NOT NULL,
   `profit` int(22) NOT NULL,
   `date_in` varchar(50) NOT NULL,
@@ -215,15 +183,14 @@ CREATE TABLE `tblproducts` (
 --
 
 INSERT INTO `tblproducts` (`product_id`, `product_name`, `quantity`, `price`, `profit`, `date_in`, `category_id`, `supplier_id`, `user_id`, `product_code`, `status`, `product_image`) VALUES
-(10, 'banana', 11, 50, 2, '2020-09-29', 1, 2, 2, '1018', 'Available', 'fruit1.jpg'),
-(11, 'oil', 38, 2000, 55, '2020-10-01', 2, 1, 2, '1019', 'Available', 'oil1.jpg'),
-(12, 'chest', 76, 200, 51, '2020-10-01', 1, 3, 2, '1020', 'Available', 'vegetable.jpg'),
-(13, 'orange', 12, 500, 55, '2020-10-01', 3, 1, 2, '1021', 'Available', 'th (2).jpg'),
-(14, 'apple', 53, 500, 5, '2020-10-01', 3, 1, 2, '1022', 'Available', 'th (2).jpg'),
-(15, 'tomatoes', 98, 1000, 55, '2020-10-01', 1, 2, 2, '1023', 'Available', 'vegetable2.jpg'),
+(10, 'banana', 4, 50, 2, '2020-09-29', 1, 2, 2, '1018', 'Available', 'fruit1.jpg'),
+(11, 'oil', 41, 2000, 55, '2020-10-01', 2, 1, 2, '1019', 'Available', 'oil1.jpg'),
+(12, 'chest', 82, 200, 51, '2020-10-01', 1, 3, 2, '1020', 'Available', 'vegetable.jpg'),
+(13, 'orange', 15, 500, 55, '2020-10-01', 3, 1, 2, '1021', 'Available', 'th (2).jpg'),
+(14, 'apple', 55, 500, 5, '2020-10-01', 3, 1, 2, '1022', 'Available', 'th (2).jpg'),
+(15, 'tomatoes', 99, 1000, 55, '2020-10-01', 1, 2, 2, '1023', 'Available', 'vegetable2.jpg'),
 (16, 'red juice', 27, 700, 55, '2020-10-01', 3, 1, 2, '1024', 'Available', 'th4.jpg'),
-(17, 'ananas', 43, 400, 55, '2020-10-06', 1, 1, 2, '1025', 'Available', 'th.jpg'),
-(18, 'samosa', 32, 34, 3, '2021-02-17', 2, 2, 2, '1026', 'Available', 'watermelon.jpg');
+(17, 'ananas', 44, 400, 55, '2020-10-06', 1, 1, 2, '1025', 'Available', 'th.jpg');
 
 -- --------------------------------------------------------
 
@@ -340,22 +307,7 @@ INSERT INTO `tbltransac` (`transac_id`, `transac_code`, `date`, `customer_id`, `
 (98, 1601986939, '2020-10-06', 5, '1024', 1, 700, 700),
 (99, 1601987133, '2020-10-06', 5, '1019', 4, 2000, 8000),
 (100, 1601987382, '2020-10-06', 5, '1018', 1, 50, 50),
-(101, 1601989049, '2020-10-06', 4, '1025', 1, 400, 400),
-(102, 1608241467, '2020-12-17', 5, '1020', 1, 200, 200),
-(103, 1608241467, '2020-12-17', 5, '1020', 1, 200, 200),
-(104, 1608241467, '2020-12-17', 5, '1019', 1, 2000, 2000),
-(105, 1608280488, '2020-12-18', 5, '1018', 1, 50, 50),
-(106, 1608280488, '2020-12-18', 5, '1018', 1, 50, 50),
-(107, 1611929229, '2021-01-29', 5, '1020', 1, 200, 200),
-(108, 1611929229, '2021-01-29', 5, '1019', 1, 2000, 2000),
-(109, 1611929402, '2021-01-29', 5, '1020', 1, 200, 200),
-(110, 1611929402, '2021-01-29', 5, '1019', 1, 2000, 2000),
-(111, 1611929435, '2021-01-29', 5, '1021', 3, 500, 1500),
-(112, 1613051723, '', 5, '1023', 1, 1000, 1000),
-(113, 1613052031, '2021-02-24', 5, '1025', 1, 400, 400),
-(114, 1613052353, '2021-02-19', 5, '1022', 2, 500, 1000),
-(115, 1613054848, '2021-02-12', 5, '1020', 1, 200, 200),
-(116, 1613055173, '2021-02-13', 5, '1020', 1, 200, 200);
+(101, 1601989049, '2020-10-06', 4, '1025', 1, 400, 400);
 
 -- --------------------------------------------------------
 
@@ -373,52 +325,39 @@ CREATE TABLE `tbltransacdetail` (
   `totalprice` int(11) NOT NULL,
   `status` varchar(200) NOT NULL,
   `remarks` text NOT NULL,
-  `delivery_date` datetime(6) NOT NULL,
-  `delivery_address` text NOT NULL
+  `delivery_date` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbltransacdetail`
 --
 
-INSERT INTO `tbltransacdetail` (`detail_id`, `transac_code`, `date`, `customer_id`, `deliveryfee`, `pay_met`, `totalprice`, `status`, `remarks`, `delivery_date`, `delivery_address`) VALUES
-(1, 1575428004, '2019-12-04 00:00:00.000000', 1, 150, '', 97650, 'Confirmed', 'Your order has been confirmed!', '2019-12-10 00:00:00.000000', ''),
-(2, 1575428113, '2019-12-04 00:00:00.000000', 2, 150, '', 90150, 'Confirmed', 'Your order has been confirmed!', '2019-12-16 00:00:00.000000', ''),
-(3, 1575428238, '2019-12-04 00:00:00.000000', 3, 150, '', 141150, 'Confirmed', 'Your order has been confirmed!', '2019-12-20 00:00:00.000000', ''),
-(4, 1575872572, '2019-12-09 00:00:00.000000', 1, 150, '', 21150, 'Pending', '', '2019-12-10 00:00:00.000000', ''),
-(5, 1575873091, '2019-12-09 00:00:00.000000', 1, 150, '', 22650, 'Pending', '', '2019-12-10 00:00:00.000000', ''),
-(6, 1576051349, '2019-12-11 00:00:00.000000', 1, 150, '', 11650, 'Pending', '', '2019-06-20 00:00:00.000000', ''),
-(7, 1601580117, '2020-10-01 00:00:00.000000', 4, 150, '', 4900, 'Confirmed', 'Your order has been confirmed!', '2020-10-05 00:00:00.000000', ''),
-(8, 1601884458, '2020-10-05 00:00:00.000000', 5, 150, '', 350, 'Confirmed', 'Your order has been confirmed!', '2020-10-05 00:00:00.000000', ''),
-(9, 1601900545, '2020-10-05 00:00:00.000000', 5, 150, '', 1150, 'Confirmed', 'Your order has been confirmed!', '2020-10-07 00:00:00.000000', ''),
-(10, 1601900910, '2020-10-05 00:00:00.000000', 5, 150, '', 850, 'Confirmed', 'Your order has been confirmed!', '2020-10-06 00:00:00.000000', ''),
-(11, 1601901500, '2020-10-05 00:00:00.000000', 4, 150, '', 1150, 'Pending', '', '2020-09-30 00:00:00.000000', ''),
-(12, 1601902251, '2020-10-05 00:00:00.000000', 5, 150, '', 350, 'Pending', '', '2020-10-05 00:00:00.000000', ''),
-(13, 1601907516, '2020-10-05 00:00:00.000000', 4, 150, '', 650, 'Pending', '', '2020-10-07 00:00:00.000000', ''),
-(14, 1601907912, '2020-10-05 00:00:00.000000', 5, 150, '', 850, 'Pending', '', '2020-10-06 00:00:00.000000', ''),
-(15, 1601973443, '2020-10-06 00:00:00.000000', 5, 150, '', 2150, 'Pending', '', '2020-10-07 00:00:00.000000', ''),
-(16, 1601985430, '2020-10-06 00:00:00.000000', 5, 150, '', 200, 'Pending', '', '2020-10-07 00:00:00.000000', ''),
-(17, 1601985473, '2020-10-06 00:00:00.000000', 5, 150, '', 150, 'Pending', '', '2020-10-19 00:00:00.000000', ''),
-(18, 1601985711, '2020-10-06 00:00:00.000000', 5, 150, 'Cash on Pickup', 2650, 'Pending', '', '2020-10-23 00:00:00.000000', ''),
-(19, 1601986537, '2020-10-06 00:00:00.000000', 5, 150, 'Cash on ', 17150, 'Pending', '', '2020-10-12 00:00:00.000000', ''),
-(20, 1601986653, '2020-10-06 00:00:00.000000', 5, 150, 'Cash on Delivery', 4150, 'Pending', '', '2020-10-19 00:00:00.000000', ''),
-(21, 1601986768, '2020-10-06 00:00:00.000000', 5, 150, 'Cash on Delivery', 2550, 'Pending', '', '2020-10-20 00:00:00.000000', ''),
-(22, 1601986939, '2020-10-06 00:00:00.000000', 5, 150, 'Cash on Delivery', 850, 'Pending', '', '2020-10-14 00:00:00.000000', ''),
-(23, 1601987133, '2020-10-06 00:00:00.000000', 5, 150, 'Cash on Pickup', 8000, 'Pending', '', '2020-10-12 00:00:00.000000', ''),
-(24, 1601987382, '2020-10-06 00:00:00.000000', 5, 150, 'Cash on Delivery', 200, 'Pending', '', '2020-09-28 00:00:00.000000', ''),
-(25, 1601989049, '2020-10-06 00:00:00.000000', 4, 150, 'Cash on Pickup', 400, 'Pending', '', '2020-10-07 00:00:00.000000', ''),
-(26, 1608241467, '2020-12-17 00:00:00.000000', 5, 150, 'Cash on Delivery', 2550, 'Pending', '', '2020-12-25 00:00:00.000000', ''),
-(27, 1608280488, '2020-12-18 00:00:00.000000', 5, 150, 'Cash on Delivery', 250, 'Pending', '', '2020-12-24 00:00:00.000000', ''),
-(28, 1611929229, '2021-01-29 00:00:00.000000', 5, 150, 'Cash on Delivery', 2350, 'Pending', '', '2021-01-30 00:00:00.000000', '                                \r\n                              '),
-(29, 1611929402, '2021-01-29 00:00:00.000000', 5, 150, 'Cash on Delivery', 2350, 'Pending', '', '2021-01-30 00:00:00.000000', '                                \r\n                              '),
-(30, 1611929435, '2021-01-29 00:00:00.000000', 5, 0, 'Cash on Pickup', 1500, 'Pending', '', '2021-01-30 00:00:00.000000', '                                \r\n                              '),
-(31, 1613051723, '0000-00-00 00:00:00.000000', 5, 0, 'Cash on Pickup', 1000, 'Pending', '', '2021-02-19 00:00:00.000000', '-'),
-(32, 1613052031, '2021-02-24 00:00:00.000000', 5, 150, 'Cash on Delivery', 550, 'Pending', '', '0000-00-00 00:00:00.000000', '                                \r\n                              '),
-(33, 1613052266, '2021-02-11 00:00:00.000000', 5, 150, 'Cash on Delivery', 150, 'Pending', '', '2021-02-24 00:00:00.000000', '                                \r\n                              '),
-(34, 1613052353, '2021-02-11 00:00:00.000000', 5, 150, 'Cash on Delivery', 1150, 'Pending', '', '2021-02-19 00:00:00.000000', '                                \r\n                              '),
-(35, 1613052539, '2021-02-11 00:00:00.000000', 5, 150, 'Cash on Delivery', 150, 'Pending', '', '2021-02-19 00:00:00.000000', '                                \r\n                              '),
-(36, 1613054848, '2021-02-11 00:00:00.000000', 5, 150, 'Cash on Delivery', 350, 'Pending', '', '2021-02-12 00:00:00.000000', '                                \r\n                              '),
-(37, 1613055173, '2021-02-11 00:00:00.000000', 5, 150, 'Cash on Delivery', 350, 'Confirmed', 'Your order has been confirmed!', '2021-02-13 00:00:00.000000', '                                \r\n                              ');
+INSERT INTO `tbltransacdetail` (`detail_id`, `transac_code`, `date`, `customer_id`, `deliveryfee`, `pay_met`, `totalprice`, `status`, `remarks`, `delivery_date`) VALUES
+(1, 1575428004, '2019-12-04 00:00:00.000000', 1, 150, '', 97650, 'Confirmed', 'Your order has been confirmed!', '2019-12-10 00:00:00.000000'),
+(2, 1575428113, '2019-12-04 00:00:00.000000', 2, 150, '', 90150, 'Confirmed', 'Your order has been confirmed!', '2019-12-16 00:00:00.000000'),
+(3, 1575428238, '2019-12-04 00:00:00.000000', 3, 150, '', 141150, 'Confirmed', 'Your order has been confirmed!', '2019-12-20 00:00:00.000000'),
+(4, 1575872572, '2019-12-09 00:00:00.000000', 1, 150, '', 21150, 'Pending', '', '2019-12-10 00:00:00.000000'),
+(5, 1575873091, '2019-12-09 00:00:00.000000', 1, 150, '', 22650, 'Pending', '', '2019-12-10 00:00:00.000000'),
+(6, 1576051349, '2019-12-11 00:00:00.000000', 1, 150, '', 11650, 'Pending', '', '2019-06-20 00:00:00.000000'),
+(7, 1601580117, '2020-10-01 00:00:00.000000', 4, 150, '', 4900, 'Confirmed', 'Your order has been confirmed!', '2020-10-05 00:00:00.000000'),
+(8, 1601884458, '2020-10-05 00:00:00.000000', 5, 150, '', 350, 'Confirmed', 'Your order has been confirmed!', '2020-10-05 00:00:00.000000'),
+(9, 1601900545, '2020-10-05 00:00:00.000000', 5, 150, '', 1150, 'Confirmed', 'Your order has been confirmed!', '2020-10-07 00:00:00.000000'),
+(10, 1601900910, '2020-10-05 00:00:00.000000', 5, 150, '', 850, 'Confirmed', 'Your order has been confirmed!', '2020-10-06 00:00:00.000000'),
+(11, 1601901500, '2020-10-05 00:00:00.000000', 4, 150, '', 1150, 'Pending', '', '2020-09-30 00:00:00.000000'),
+(12, 1601902251, '2020-10-05 00:00:00.000000', 5, 150, '', 350, 'Pending', '', '2020-10-05 00:00:00.000000'),
+(13, 1601907516, '2020-10-05 00:00:00.000000', 4, 150, '', 650, 'Pending', '', '2020-10-07 00:00:00.000000'),
+(14, 1601907912, '2020-10-05 00:00:00.000000', 5, 150, '', 850, 'Pending', '', '2020-10-06 00:00:00.000000'),
+(15, 1601973443, '2020-10-06 00:00:00.000000', 5, 150, '', 2150, 'Pending', '', '2020-10-07 00:00:00.000000'),
+(16, 1601985430, '2020-10-06 00:00:00.000000', 5, 150, '', 200, 'Pending', '', '2020-10-07 00:00:00.000000'),
+(17, 1601985473, '2020-10-06 00:00:00.000000', 5, 150, '', 150, 'Pending', '', '2020-10-19 00:00:00.000000'),
+(18, 1601985711, '2020-10-06 00:00:00.000000', 5, 150, 'Cash on Pickup', 2650, 'Pending', '', '2020-10-23 00:00:00.000000'),
+(19, 1601986537, '2020-10-06 00:00:00.000000', 5, 150, 'Cash on ', 17150, 'Pending', '', '2020-10-12 00:00:00.000000'),
+(20, 1601986653, '2020-10-06 00:00:00.000000', 5, 150, 'Cash on Delivery', 4150, 'Pending', '', '2020-10-19 00:00:00.000000'),
+(21, 1601986768, '2020-10-06 00:00:00.000000', 5, 150, 'Cash on Delivery', 2550, 'Pending', '', '2020-10-20 00:00:00.000000'),
+(22, 1601986939, '2020-10-06 00:00:00.000000', 5, 150, 'Cash on Delivery', 850, 'Pending', '', '2020-10-14 00:00:00.000000'),
+(23, 1601987133, '2020-10-06 00:00:00.000000', 5, 150, 'Cash on Pickup', 8000, 'Pending', '', '2020-10-12 00:00:00.000000'),
+(24, 1601987382, '2020-10-06 00:00:00.000000', 5, 150, 'Cash on Delivery', 200, 'Pending', '', '2020-09-28 00:00:00.000000'),
+(25, 1601989049, '2020-10-06 00:00:00.000000', 4, 150, 'Cash on Pickup', 400, 'Pending', '', '2020-10-07 00:00:00.000000');
 
 -- --------------------------------------------------------
 
@@ -454,12 +393,6 @@ INSERT INTO `tblusers` (`user_id`, `fname`, `lname`, `email`, `contact`, `addres
 --
 ALTER TABLE `history`
   ADD PRIMARY KEY (`h_id`);
-
---
--- Indexes for table `messages`
---
-ALTER TABLE `messages`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tblautonumber`
@@ -534,12 +467,6 @@ ALTER TABLE `history`
   MODIFY `h_id` int(50) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `messages`
---
-ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `tblautonumber`
 --
 ALTER TABLE `tblautonumber`
@@ -555,13 +482,13 @@ ALTER TABLE `tblcategory`
 -- AUTO_INCREMENT for table `tblcustomer`
 --
 ALTER TABLE `tblcustomer`
-  MODIFY `C_ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `C_ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbldelivery`
 --
 ALTER TABLE `tbldelivery`
-  MODIFY `D_ID` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `D_ID` int(50) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tblemployee`
@@ -573,7 +500,7 @@ ALTER TABLE `tblemployee`
 -- AUTO_INCREMENT for table `tblproducts`
 --
 ALTER TABLE `tblproducts`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tblsupplier`
@@ -585,13 +512,13 @@ ALTER TABLE `tblsupplier`
 -- AUTO_INCREMENT for table `tbltransac`
 --
 ALTER TABLE `tbltransac`
-  MODIFY `transac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `transac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT for table `tbltransacdetail`
 --
 ALTER TABLE `tbltransacdetail`
-  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `tblusers`
