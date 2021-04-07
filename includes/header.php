@@ -66,7 +66,7 @@
           <li><a href="category.php?category=2">Oil</a></li>
           <li><a href="category.php?category=3">Juices</a></li>
           <li><a href="category.php?category=1">Vegetables</a></li>
-          <li><a href="contact.php">Contact</a></li>
+          <li><a href="contactus.php">Contact</a></li>
           <li><a href="aboutus.php">About</a></li>
         </ul>
       </nav>
@@ -93,27 +93,40 @@
      }else{
       echo '<li><a class="nav-link text-light" href="register.php"><i class="fas fa-user-alt ">Sign Up</i></a></li>';
      }
-   if (isset($_SESSION['cid'])) {
+   // if (isset($_SESSION['cid'])) {
      
       
-     }else{
-      echo '<li><a class="nav-link text-light" href="admin/login.php"><i class="fas fa-user-alt ">Manager signin</i></a></li>';
-     }
+   //   }else{
+   //    echo '<li><a class="nav-link text-light" href="admin/login.php"><i class="fas fa-user-alt ">Manager signin</i></a></li>';
+   //   }
       ?>
 
           
          
         
             <?php 
-     if (isset($_SESSION['cid'])) {
-      echo '<li><a class="nav-link text-light " href="#" data-toggle="modal" data-target="#logoutModal"><i class=" fas fa-sign-out-alt" >Logout</i></a></li>';
+     if (isset($_SESSION['userType'])) {
+      echo '<li><a class="nav-link text-light " href="logout.php"><i class=" fas fa-sign-out-alt" > Logout</i></a></li>';
+      if ($_SESSION['userType']=='manager') 
+      {
+        echo '<li><a class="nav-link text-light " href="logout.php"><i class=" fas fa-sign-out-alt" > Manager panel</i></a></li>';
+      }
+      elseif ($_SESSION['userType']=='delivery') {
+        echo '<li><a class="nav-link text-light " href="deliveries.php"><i class=" fa fa-car" > Deliveries</i></a></li>';
+      }
      }else{
       echo '
-          <li><a class="nav-link text-light " href="login.php" id="userDropdown">
-            <i class=" fas fa-sign-in-alt" > Login</i>
-
-
-          </a></li>
+          <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="loginsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="glyphicon glyphicon-log-in"></i> Login
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="loginsDropdown">
+            <a class="dropdown-item text-dark" href="login.php">Customer</a>
+            <a class="dropdown-item text-dark" href="admin/login.php">Manager</a>
+            <a class="dropdown-item text-dark" href="Deliverylogin.php">Delivery</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">_____________________</a>
+          </div>
+        </li>
           
        ' ;
       

@@ -34,6 +34,8 @@ else{
 				$_SESSION['C_FNAME'] = $row['C_FNAME'];
 				$_SESSION['C_LNAME'] = $row['C_LNAME'];
 				$_SESSION['address'] = $row['C_ADDRESS'];
+        		$_SESSION['userType']='customer';
+
 				$_SESSION['contact'] = $row['C_PNUMBER'];
 				header("Location: ../indexx.php?login=success");
 				exit();

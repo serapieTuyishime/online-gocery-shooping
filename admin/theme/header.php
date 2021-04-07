@@ -65,7 +65,7 @@
       echo '<a class="nav-link " href="index.php"><i class=" fas fa-user-circle" >'.$_SESSION['fname'].' '.$_SESSION['lname'].'</i></a>';
       }
      }else{
-      echo '<a class="nav-link " href="admin.php"><i class="fas fa-user-alt ">Oliva Musanabera</i></a>';
+      echo '<a class="nav-link " href="login.php"><i class="fas fa-user-alt "> Plase login</i></a>';
      }
       ?>
 
@@ -82,7 +82,7 @@
         </li>
        
         
-          <a class="nav-link " href="#" data-toggle="modal" data-target="#logoutModal"><i class=" fas fa-sign-out-alt" >Logout</i></a>
+          <a class="nav-link " href="theme/logout.php" onclick="return confirm('Are you sure you want to end this session ?')"><i class=" fas fa-sign-out-alt" >Logout</i></a>
           
       
             

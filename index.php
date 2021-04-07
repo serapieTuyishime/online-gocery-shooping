@@ -20,7 +20,7 @@
     <body>
         <div>
            <?php
-            require 'header.php';
+            require 'includes/header.php';
            ?>
            <div id="bannerImage">
                <div class="container">

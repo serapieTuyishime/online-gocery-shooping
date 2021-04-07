@@ -32,6 +32,8 @@ include 'theme/sidebar.php';
                echo '<p class="error-msg text-danger">Please Enter your Contact Number 10 digits</p>';
             }elseif ($_GET["required"]=="email") {
                echo '<p class="error-msg text-danger">Email is required</p>';
+           }elseif ($_GET["required"]=="invalidemail") {
+           echo '<p class="error-msg text-danger">Email is invalid</p>';
             }elseif ($_GET["required"]=="address") {
                echo '<p class="error-msg text-danger">Address is required</p>';
             }elseif ($_GET["required"]=="gender") {
@@ -41,17 +43,19 @@ include 'theme/sidebar.php';
             }elseif ($_GET["required"]=="position") {
                echo '<p class="error-msg text-danger">Position is required</p>';
             }elseif ($_GET["required"]=="hire") {
-               echo '<p class="error-msg text-danger">Hire date is required</p>';
-            } 
+               echo '<p class="error-msg text-danger">Hire date is required</p>'; 
+            }elseif ($_GET["required"]=="pwd") {
+               echo '<p class="error-msg text-danger">Passwords should match</p>';
+            }
             }?>                        
           <div class="form-group">
-          <input class="form-control" placeholder="First Name" name="fname" autofocus="autofocus">
+          <input class="form-control" placeholder="First Name" name="fname" autofocus="autofocus" onkeypress="return alphabets(event)">
           </div>
           <div class="form-group">
-          <input class="form-control" placeholder="Last Name" name="lname">
+          <input class="form-control" placeholder="Last Name" name="lname" onkeypress="return alphabets(event)">
           </div> 
           <div class="form-group">
-          <input type="text" maxlength="10" class="form-control" placeholder="Phone number" name="numbers">
+          <input type="text" maxlength="10" class="form-control" placeholder="Phone number" name="numbers" onkeypress="return numbers()">
           </div> 
           <div class="form-group">
           <input class="form-control" placeholder="Email" name="email">
@@ -68,14 +72,39 @@ include 'theme/sidebar.php';
           </select>
           </div> 
           <div class="form-group">
-          <input type="number" class="form-control" placeholder="Age" name="age">
+          <input type="text" class="form-control" placeholder="Age" name="age" maxlength="3" onkeypress="return numbers(event)">
           </div> 
           <div class="form-group">
-          <input class="form-control" placeholder="Position" name="position">
+            Employee type: <br>
+
+          <select class="form-control" name="position">
+            <option value="">--Select</option>
+            <option value="delivery">Delivery</option>
+            <option value="supervisor">Supervisor</option>
+            <option value="other">Other</option>
+          </select> 
+
+          </div>
+          <div class="form-group">
+            Date of hire <br>
+          <input type="date" class="form-control" placeholder="Hire date" name="hire" max="<?php echo date('Y-m-d'); ?>">
           </div> 
           <div class="form-group">
-          <input type="date" class="form-control" placeholder="Hire date" name="hire">
-          </div> 
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                    <input type="password" id="inputPassword" name="pwd" class="form-control" placeholder="Password">
+                    <label for="inputPassword">Password</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                    <input type="password" id="confirmPassword" name="pwdcon" class="form-control" placeholder="Confirm password">
+                    <label for="confirmPassword">Confirm password</label>
+                  </div>
+                </div>
+              </div>
+            </div>
           <button type="submit" name="submit" class="btn btn-info">Save Record</button>
           <button type="reset" class="btn btn-danger">Clear Entry</button>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2021 at 06:31 AM
+-- Generation Time: Apr 07, 2021 at 10:20 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.32
 
@@ -161,6 +161,7 @@ CREATE TABLE `tblemployee` (
   `lname` varchar(50) NOT NULL,
   `contact` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
+  `password` tinytext DEFAULT NULL,
   `address` text NOT NULL,
   `gender` varchar(50) NOT NULL,
   `age` int(2) NOT NULL,
@@ -172,9 +173,10 @@ CREATE TABLE `tblemployee` (
 -- Dumping data for table `tblemployee`
 --
 
-INSERT INTO `tblemployee` (`emp_id`, `fname`, `lname`, `contact`, `email`, `address`, `gender`, `age`, `position`, `hire_date`) VALUES
-(4, 'Munezero', 'lilian', '07883457778', 'munezar@gmail.com', 'Rubavu', 'Female', 30, 'supervisor', '2020-08-07'),
-(5, 'kaneza', 'clever', '07888845656', 'kaneza@yahoo.com', 'Musanze', 'Female', 21, 'delivery', '2020-08-10');
+INSERT INTO `tblemployee` (`emp_id`, `fname`, `lname`, `contact`, `email`, `password`, `address`, `gender`, `age`, `position`, `hire_date`) VALUES
+(4, 'Munezero', 'lilian', '07883457778', 'munezar@gmail.com', NULL, 'Rubavu', 'Female', 30, 'supervisor', '2020-08-07'),
+(5, 'kaneza', 'clever', '07888845656', 'kaneza@yahoo.com', NULL, 'Musanze', 'Female', 21, 'delivery', '2020-08-10'),
+(6, 'icyiza', 'audrene', '2354345435', 'audre@gmail.com', '$2y$10$ds1gqSSjIHq/I7c.Ly/w9eF.OPgcXyeG09wL71loBGy0qLkNzUZlS', '3dsfdf', 'Female', 23, 'delivery', '2021-04-22');
 
 -- --------------------------------------------------------
 
@@ -417,8 +419,8 @@ INSERT INTO `tbltransacdetail` (`detail_id`, `transac_code`, `date`, `customer_i
 (33, 1613052266, '2021-02-11 00:00:00.000000', 5, 150, 'Cash on Delivery', 150, 'Pending', '', '2021-02-24 00:00:00.000000', '                                \r\n                              '),
 (34, 1613052353, '2021-02-11 00:00:00.000000', 5, 150, 'Cash on Delivery', 1150, 'Pending', '', '2021-02-19 00:00:00.000000', '                                \r\n                              '),
 (35, 1613052539, '2021-02-11 00:00:00.000000', 5, 150, 'Cash on Delivery', 150, 'Pending', '', '2021-02-19 00:00:00.000000', '                                \r\n                              '),
-(36, 1613054848, '2021-02-11 00:00:00.000000', 5, 150, 'Cash on Delivery', 350, 'Pending', '', '2021-02-12 00:00:00.000000', '                                \r\n                              '),
-(37, 1613055173, '2021-02-11 00:00:00.000000', 5, 150, 'Cash on Delivery', 350, 'Confirmed', 'Your order has been confirmed!', '2021-02-13 00:00:00.000000', '                                \r\n                              ');
+(36, 1613054848, '2021-02-11 00:00:00.000000', 5, 150, 'Cash on Delivery', 350, 'Cancelled', 'Your order has been cancelled <br>\r\n	 due to lack of communication <br> and incomplete informatio!', '2021-02-12 00:00:00.000000', '                                \r\n                              '),
+(37, 1613055173, '2021-02-11 00:00:00.000000', 5, 150, 'Cash on Delivery', 350, 'Delivered', 'Your order has been Started for delivery !', '2021-02-13 00:00:00.000000', '                                \r\n                              ');
 
 -- --------------------------------------------------------
 
@@ -567,7 +569,7 @@ ALTER TABLE `tbldelivery`
 -- AUTO_INCREMENT for table `tblemployee`
 --
 ALTER TABLE `tblemployee`
-  MODIFY `emp_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `emp_id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tblproducts`

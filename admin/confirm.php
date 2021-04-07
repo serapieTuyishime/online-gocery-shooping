@@ -11,5 +11,5 @@ elseif (isset($_GET['confirm'])) {
  ?>
  <script type="text/javascript">
 			alert("Transaction Updated.");
-			window.location = "detail.php";
+			window.location = "delivery.php";
 		</script>

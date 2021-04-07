@@ -12,6 +12,8 @@
 					    $age = $_POST['age'];
 					    $position = $_POST['position'];
 					    $hire = $_POST['hire'];
+              $pwd= $_POST['pwd'];
+              $pwdcon= $_POST['pwdcon'];
 
 			if ($_GET['action'] == 'add') {	
         $result=mysqli_query($db,"SELECT * FROM tblemployee WHERE `contact`='".$number."'");
@@ -24,11 +26,15 @@
               header("Location: employeeadd.php?required=lastname");    
             }elseif ($number == "" || $number < 0 ) {
               header("Location: employeeadd.php?required=number");  
-            }elseif (!preg_match("/^\d{11}+$/",$number)) {
+            }elseif (!preg_match("/^\d{10}+$/",$number)) {
               header("Location: employeeadd.php?required=invalidnumber");  
             }elseif ($email == "") {
               header("Location: employeeadd.php?required=email");  
-            }elseif ($address == "") {
+            }
+            elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+              header("Location: employeeadd.php?required=invalidemail");
+            }
+            elseif ($address == "") {
               header("Location: employeeadd.php?required=address");    
             }elseif ($gender == "") {
               header("Location: employeeadd.php?required=gender");    
@@ -38,8 +44,11 @@
               header("Location: employeeadd.php?required=position");  
             }elseif ($hire == "") {
               header("Location: employeeadd.php?required=hire");  
+            }elseif ($pwd != $pwdcon ) {
+              header("Location: employeeadd.php?required=pwd");  
             }else{
-            $query = "INSERT INTO `tblemployee`(`fname`, `lname`, `contact`, `email`, `address`, `gender`, `age`, `position`, `hire_date`) VALUES ('".$fname."','".$lname."','".$number."','".$email."','".$address."','".$gender."','".$age."','".$position."','".$hire."')";
+              $hashedPwd =password_hash($pwd,PASSWORD_DEFAULT);
+            $query = "INSERT INTO `tblemployee`(`fname`, `lname`, `contact`, `email`, `address`, `gender`, `age`, `position`, `hire_date`, `password`) VALUES ('".$fname."','".$lname."','".$number."','".$email."','".$address."','".$gender."','".$age."','".$position."','".$hire."','".$hashedPwd."')";
 				mysqli_query($db,$query)or die (mysqli_error($db));
 				?>
 				<script type="text/javascript">
